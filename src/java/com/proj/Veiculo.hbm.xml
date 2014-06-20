@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.Veiculo" table="veiculo" catalog="projsoftware">
+        <id name="copVeiculo" type="int">
+            <column name="cop_veiculo" />
+            <generator class="assigned" />
+        </id>
+        <property name="modelo" type="string">
+            <column name="modelo" length="150" />
+        </property>
+        <property name="marca" type="string">
+            <column name="marca" length="150" />
+        </property>
+        <property name="anoModelo" type="timestamp">
+            <column name="ano_modelo" length="19" />
+        </property>
+        <property name="tipoVeiculo" type="string">
+            <column name="tipo_veiculo" length="1" not-null="true">
+                <comment>A = aluguel</comment>
+            </column>
+        </property>
+        <set name="veiculoVendas" inverse="true">
+            <key>
+                <column name="cod_veiculo" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.proj.VeiculoVenda" />
+        </set>
+    </class>
+</hibernate-mapping>

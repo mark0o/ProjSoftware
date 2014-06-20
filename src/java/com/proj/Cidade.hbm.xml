@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.Cidade" table="cidade" catalog="projsoftware">
+        <id name="codCidade" type="int">
+            <column name="cod_cidade" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeCidade" type="string">
+            <column name="nome_cidade" length="150" not-null="true" />
+        </property>
+        <property name="codIbge" type="string">
+            <column name="cod_ibge" length="7" not-null="true" />
+        </property>
+        <property name="cepPadrao" type="string">
+            <column name="cep_padrao" length="8" />
+        </property>
+        <set name="pessoas" inverse="true">
+            <key>
+                <column name="cod_cidade" />
+            </key>
+            <one-to-many class="com.proj.Pessoa" />
+        </set>
+    </class>
+</hibernate-mapping>

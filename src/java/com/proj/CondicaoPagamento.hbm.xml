@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.CondicaoPagamento" table="condicao_pagamento" catalog="projsoftware">
+        <id name="codCondicao" type="int">
+            <column name="cod_condicao" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoPagamento" type="string">
+            <column name="tipo_pagamento" length="150" not-null="true" />
+        </property>
+        <property name="condicao" type="string">
+            <column name="condicao" length="150" not-null="true" />
+        </property>
+        <set name="vendas" inverse="true">
+            <key>
+                <column name="cod_condicao" not-null="true" />
+            </key>
+            <one-to-many class="com.proj.Venda" />
+        </set>
+    </class>
+</hibernate-mapping>

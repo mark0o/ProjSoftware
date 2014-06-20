@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.PagamentoVenda" table="pagamento_venda" catalog="projsoftware">
+        <composite-id name="id" class="com.proj.PagamentoVendaId">
+            <key-property name="codContrato" type="int">
+                <column name="cod_contrato" />
+            </key-property>
+            <key-property name="seqPagamento" type="int">
+                <column name="seq_pagamento" />
+            </key-property>
+        </composite-id>
+        <property name="vlrTotal" type="big_decimal">
+            <column name="vlr_total" precision="13" />
+        </property>
+        <property name="vlrJuros" type="big_decimal">
+            <column name="vlr_juros" precision="13" />
+        </property>
+        <property name="vlrDesconto" type="big_decimal">
+            <column name="vlr_desconto" precision="13" />
+        </property>
+        <property name="vlrMulta" type="big_decimal">
+            <column name="vlr_multa" precision="13" />
+        </property>
+        <property name="dtInipagamento" type="timestamp">
+            <column name="dt_inipagamento" length="19" not-null="true" />
+        </property>
+        <property name="dtFimPagamento" type="timestamp">
+            <column name="dt_fim_pagamento" length="19" />
+        </property>
+        <property name="dtRegistro" type="timestamp">
+            <column name="dt_registro" length="19" not-null="true" />
+        </property>
+        <property name="numParcela" type="java.lang.Integer">
+            <column name="num_parcela" />
+        </property>
+        <property name="vlrPago" type="big_decimal">
+            <column name="vlr_pago" precision="13" />
+        </property>
+        <property name="dtParcela" type="timestamp">
+            <column name="dt_parcela" length="19" />
+        </property>
+        <set name="comissaos" inverse="true">
+            <key>
+                <column name="cod_contrato" not-null="true" />
+                <column name="seq_pagamento" not-null="true" />
+            </key>
+            <one-to-many class="com.proj.Comissao" />
+        </set>
+    </class>
+</hibernate-mapping>

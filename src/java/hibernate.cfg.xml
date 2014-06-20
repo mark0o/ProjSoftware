@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/projsoftware?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">mysql</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="com/proj/PagamentoVenda.hbm.xml"/>
+    <mapping resource="com/proj/Funcionario.hbm.xml"/>
+    <mapping resource="com/proj/Cliente.hbm.xml"/>
+    <mapping resource="com/proj/Pessoa.hbm.xml"/>
+    <mapping resource="com/proj/Cidade.hbm.xml"/>
+    <mapping resource="com/proj/Venda.hbm.xml"/>
+    <mapping resource="com/proj/VeiculoVenda.hbm.xml"/>
+    <mapping resource="com/proj/Comissao.hbm.xml"/>
+    <mapping resource="com/proj/Usuario.hbm.xml"/>
+    <mapping resource="com/proj/Veiculo.hbm.xml"/>
+    <mapping resource="com/proj/CondicaoPagamento.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

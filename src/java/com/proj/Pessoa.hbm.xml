@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.Pessoa" table="pessoa" catalog="projsoftware">
+        <id name="codPessoa" type="int">
+            <column name="cod_pessoa" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cidade" class="com.proj.Cidade" fetch="select">
+            <column name="cod_cidade" />
+        </many-to-one>
+        <property name="nomePessoa" type="string">
+            <column name="nome_pessoa" length="200" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="400" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="15" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="15" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="10" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="11" />
+        </property>
+        <property name="cnpj" type="string">
+            <column name="cnpj" length="8" />
+        </property>
+        <property name="devCnpj" type="string">
+            <column name="dev_cnpj" length="6" />
+        </property>
+        <property name="flgStatus" type="string">
+            <column name="flg_status" length="1" not-null="true" />
+        </property>
+        <property name="dtNascimento" type="timestamp">
+            <column name="dt_nascimento" length="19" />
+        </property>
+        <property name="dtInclussao" type="timestamp">
+            <column name="dt_inclussao" length="19" not-null="true" />
+        </property>
+        <property name="codEndereco" type="int">
+            <column name="cod_endereco" not-null="true" />
+        </property>
+        <property name="rua" type="string">
+            <column name="rua" length="300" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="200" />
+        </property>
+        <property name="numEndereco" type="java.lang.Integer">
+            <column name="num_endereco" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="300" />
+        </property>
+        <set name="clientes" inverse="true">
+            <key>
+                <column name="cod_pessoa" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.proj.Cliente" />
+        </set>
+        <set name="funcionarios" inverse="true">
+            <key>
+                <column name="cod_pessoa" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.proj.Funcionario" />
+        </set>
+    </class>
+</hibernate-mapping>

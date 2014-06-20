@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.Comissao" table="comissao" catalog="projsoftware">
+        <composite-id name="id" class="com.proj.ComissaoId">
+            <key-property name="codFuncionario" type="int">
+                <column name="cod_funcionario" />
+            </key-property>
+            <key-property name="codContrato" type="int">
+                <column name="cod_contrato" />
+            </key-property>
+            <key-property name="seqPagamento" type="int">
+                <column name="seq_pagamento" />
+            </key-property>
+            <key-property name="seqComissao" type="int">
+                <column name="seq_comissao" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pagamentoVenda" class="com.proj.PagamentoVenda" update="false" insert="false" fetch="select">
+            <column name="cod_contrato" not-null="true" />
+            <column name="seq_pagamento" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="com.proj.Funcionario" update="false" insert="false" fetch="select">
+            <column name="cod_funcionario" not-null="true" />
+        </many-to-one>
+        <property name="dtVenda" type="timestamp">
+            <column name="dt_venda" length="19" not-null="true" />
+        </property>
+        <property name="valComissao" type="timestamp">
+            <column name="val_comissao" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

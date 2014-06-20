@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.VeiculoVenda" table="veiculo_venda" catalog="projsoftware">
+        <id name="codVeiculo" type="int">
+            <column name="cod_veiculo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="veiculo" class="com.proj.Veiculo" update="false" insert="false" fetch="select">
+            <column name="cod_veiculo" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="vlrVeiculo" type="big_decimal">
+            <column name="vlr_veiculo" precision="13" />
+        </property>
+        <set name="vendas" inverse="true">
+            <key>
+                <column name="cod_veiculo" not-null="true" />
+            </key>
+            <one-to-many class="com.proj.Venda" />
+        </set>
+    </class>
+</hibernate-mapping>

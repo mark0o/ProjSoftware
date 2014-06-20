@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 22:10:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.proj.Funcionario" table="funcionario" catalog="projsoftware">
+        <id name="codPessoa" type="int">
+            <column name="cod_pessoa" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pessoa" class="com.proj.Pessoa" update="false" insert="false" fetch="select">
+            <column name="cod_pessoa" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.proj.Usuario" fetch="select">
+            <column name="cod_usuario" />
+        </many-to-one>
+        <property name="vlrSalarioatual" type="big_decimal">
+            <column name="vlr_salarioatual" precision="13" not-null="true" />
+        </property>
+        <property name="flgStatus" type="string">
+            <column name="flg_status" length="45" not-null="true" />
+        </property>
+        <set name="comissaos" inverse="true">
+            <key>
+                <column name="cod_funcionario" not-null="true" />
+            </key>
+            <one-to-many class="com.proj.Comissao" />
+        </set>
+        <set name="vendas" inverse="true">
+            <key>
+                <column name="cod_funcionario" not-null="true" />
+            </key>
+            <one-to-many class="com.proj.Venda" />
+        </set>
+    </class>
+</hibernate-mapping>
